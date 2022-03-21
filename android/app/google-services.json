@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "912743199269",
+    "project_id": "graduation-344800",
+    "storage_bucket": "graduation-344800.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912743199269:android:0d0ddf05bc980fa63805cc",
+        "android_client_info": {
+          "package_name": "com.solarx.solar_x"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912743199269-i4getdm6m0e9ouhf8l4q8v4vkhvkpplo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADPxv9VuG5qoPk6M340t9XVLGxHt3tXNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912743199269-i4getdm6m0e9ouhf8l4q8v4vkhvkpplo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
