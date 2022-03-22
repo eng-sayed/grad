@@ -5,11 +5,13 @@ class MarkerModel {
   double? lan;
   String? image;
   String? address;
+  double? distance;
   MarkerModel({
     this.lat,
     this.lan,
     this.image,
     this.address,
+    this.distance,
   });
 
   Map<String, dynamic> toMap() {
@@ -40,12 +42,14 @@ class MarkerModel {
     double? lan,
     String? image,
     String? address,
+    double? distance,
   }) {
     return MarkerModel(
       lat: lat ?? this.lat,
       lan: lan ?? this.lan,
       image: image ?? this.image,
       address: address ?? this.address,
+      distance: distance ?? this.distance,
     );
   }
 }

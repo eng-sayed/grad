@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<MainScreenController>(create: (_) {
-          return MainScreenController();
+        ChangeNotifierProvider<MarkerController>(create: (_) {
+          return MarkerController();
         }),
       ],
       child: MaterialApp(
