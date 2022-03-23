@@ -11,17 +11,19 @@ class Gallery extends StatelessWidget {
       backgroundColor: background,
       appBar: AppBar(
         backgroundColor: mainColor,
-        title: Text('3d Printer',
+        title: Text('معرض الصور',
             style: TextStyle(color: Colors.white, fontSize: 19)),
+        centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  //  width: 60,
-                )),
+          Hero(
+            tag: 'dd',
+            child: Container(
+              width: 45,
+              child: Image.asset(
+                "assets/images/logo2.png",
+                //  width: 60,
+              ),
+            ),
           ),
         ],
       ),

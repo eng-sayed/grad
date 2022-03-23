@@ -16,24 +16,38 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  GoogleMapController? mapController; //contrller for Google map
-  final Set<Marker> markers = new Set(); //markers for google map
-  static const LatLng showLocation = const LatLng(27.7089427, 85.3086209);
-  List<IconData> icons = [
-    Icons.ac_unit,
-    Icons.account_balance,
-    Icons.adb,
-    Icons.add_photo_alternate,
-    Icons.format_line_spacing
-  ];
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  GoogleMapController? mapController;
+  BitmapDescriptor? markerbitmap;
+  //contrller for Google map
+  // final Set<Marker> markers = new Set(); //markers for google map
+  // static const LatLng showLocation = const LatLng(27.7089427, 85.3086209);
+  // List<IconData> icons = [
+  //   Icons.ac_unit,
+  //   Icons.account_balance,
+  //   Icons.adb,
+  //   Icons.add_photo_alternate,
+  //   Icons.format_line_spacing
+  // ];
+  // FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   void initState() {
     // TODO: implement initState
     // dd();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+      ImageConfiguration configuration = createLocalImageConfiguration(context);
+      BitmapDescriptor.fromAssetImage(configuration, 'assets/images/logo.png')
+          .then((icon) {
+        setState(() {
+          markerbitmap = icon;
+        });
+      });
+
       await Provider.of<MarkerController>(context, listen: false)
           .getMarker(context);
+      // markerbitmap = await BitmapDescriptor.fromAssetImage(
+      //   ImageConfiguration(),
+      //   "assets/images/solar.png",
+      // );
     });
 
     super.initState();
@@ -79,50 +93,50 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
-  Set<Marker> getmarkers() {
-    //markers to place on map
-    // setState(() {
-    markers.add(Marker(
-      //add first marker
-      markerId: MarkerId(showLocation.toString()),
-      position: showLocation, //position of marker
-      infoWindow: InfoWindow(
-        //popup info
-        title: 'Marker Title First ',
-        snippet: 'My Custom Subtitle',
-      ),
-      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-    ));
+  // Set<Marker> getmarkers() {
+  //   //markers to place on map
+  //   // setState(() {
+  //   markers.add(Marker(
+  //     //add first marker
+  //     markerId: MarkerId(showLocation.toString()),
+  //     position: showLocation, //position of marker
+  //     infoWindow: InfoWindow(
+  //       //popup info
+  //       title: 'Marker Title First ',
+  //       snippet: 'My Custom Subtitle',
+  //     ),
+  //     icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+  //   ));
 
-    markers.add(Marker(
-      //add second marker
-      markerId: MarkerId(showLocation.toString()),
-      position: LatLng(27.7099116, 85.3132343), //position of marker
-      infoWindow: InfoWindow(
-        //popup info
-        title: 'Marker Title Second ',
-        snippet: 'My Custom Subtitle',
-      ),
-      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-    ));
+  //   markers.add(Marker(
+  //     //add second marker
+  //     markerId: MarkerId(showLocation.toString()),
+  //     position: LatLng(27.7099116, 85.3132343), //position of marker
+  //     infoWindow: InfoWindow(
+  //       //popup info
+  //       title: 'Marker Title Second ',
+  //       snippet: 'My Custom Subtitle',
+  //     ),
+  //     icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+  //   ));
 
-    markers.add(Marker(
-      //add third marker
-      markerId: MarkerId(showLocation.toString()),
-      position: LatLng(27.7137735, 85.315626), //position of marker
-      infoWindow: InfoWindow(
-        //popup info
-        title: 'Marker Title Third ',
-        snippet: 'My Custom Subtitle',
-      ),
-      icon: BitmapDescriptor.defaultMarker, //Icon for Marker
-    ));
+  //   markers.add(Marker(
+  //     //add third marker
+  //     markerId: MarkerId(showLocation.toString()),
+  //     position: LatLng(27.7137735, 85.315626), //position of marker
+  //     infoWindow: InfoWindow(
+  //       //popup info
+  //       title: 'Marker Title Third ',
+  //       snippet: 'My Custom Subtitle',
+  //     ),
+  //     icon: BitmapDescriptor.defaultMarker, //Icon for Marker
+  //   ));
 
-    //add more markers here
-    // });
+  //   //add more markers here
+  //   // });
 
-    return markers;
-  }
+  //   return markers;
+  // }
 }
 
 class FunkyOverlay extends StatefulWidget {

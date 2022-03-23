@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Hero(
             child: Container(
-                width: 55, child: Image.asset('assets/images/logo2.png')),
+                width: 45, child: Image.asset('assets/images/logo2.png')),
             tag: 'dd'),
         centerTitle: true,
         // actions: [

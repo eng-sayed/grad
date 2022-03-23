@@ -15,10 +15,20 @@ class MarkerController extends ChangeNotifier {
 
   MapState mapState = MapState.loading;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final bitmapIcon = BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(size: Size(48, 48)), 'assets/images/solar.png');
 
-  getMarker(context) async {
+  BitmapDescriptor? customMarker;
+  getCustomMarker() async {
+    customMarker = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(size: Size(10, 15)), 'assets/images/solar.png');
+  }
+
+  getMarker(
+    context,
+  ) async {
     Position position = await getGeoLocationPosition();
-
+    getCustomMarker();
     await firestore.collection("markers").get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) async {
         var data = MarkerModel.fromMap(result.data() as Map<String, dynamic>);
@@ -29,8 +39,10 @@ class MarkerController extends ChangeNotifier {
         print('distance  ${distance}');
         locations.add(data.copyWith(distance: distance));
         marker.add(Marker(
+            icon: customMarker!,
             markerId: MarkerId(data.lan.toString()),
             position: LatLng(data.lat!, data.lan!),
+            draggable: true,
             onTap: () {
               print('object');
               showDialog(
